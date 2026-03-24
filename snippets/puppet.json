@@ -1,0 +1,163 @@
+{
+  "Class Definition": {
+    "prefix": "class",
+    "body": [
+      "# @summary ${1:Short description}",
+      "#",
+      "# ${2:Longer description}",
+      "#",
+      "# @param ${3:param_name} ${4:Parameter description}",
+      "class ${5:class_name} (",
+      "  ${6:}",
+      ") {",
+      "  ${0:# resources}",
+      "}"
+    ],
+    "description": "Create a Puppet class"
+  },
+  "Defined Type": {
+    "prefix": "define",
+    "body": [
+      "# @summary ${1:Short description}",
+      "#",
+      "# @param ${2:param_name} ${3:Parameter description}",
+      "define ${4:define_name} (",
+      "  ${5:}",
+      ") {",
+      "  ${0:# resources}",
+      "}"
+    ],
+    "description": "Create a Puppet defined type"
+  },
+  "Resource Declaration": {
+    "prefix": "resource",
+    "body": [
+      "${1:resource_type} { '${2:title}':",
+      "  ${3:attribute} => ${4:value},",
+      "  ${0:}",
+      "}"
+    ],
+    "description": "Declare a Puppet resource"
+  },
+  "File Resource": {
+    "prefix": "file",
+    "body": [
+      "file { '${1:/path/to/file}':",
+      "  ensure  => ${2:file},",
+      "  owner   => '${3:root}',",
+      "  group   => '${4:root}',",
+      "  mode    => '${5:0644}',",
+      "  content => ${6:template('module/file.erb')},",
+      "}"
+    ],
+    "description": "Create a file resource"
+  },
+  "Package Resource": {
+    "prefix": "package",
+    "body": [
+      "package { '${1:package_name}':",
+      "  ensure => ${2:present},",
+      "}"
+    ],
+    "description": "Create a package resource"
+  },
+  "Service Resource": {
+    "prefix": "service",
+    "body": [
+      "service { '${1:service_name}':",
+      "  ensure => ${2:running},",
+      "  enable => ${3:true},",
+      "}"
+    ],
+    "description": "Create a service resource"
+  },
+  "Exec Resource": {
+    "prefix": "exec",
+    "body": [
+      "exec { '${1:command_description}':",
+      "  command => '${2:/path/to/command}',",
+      "  path    => ['/usr/bin', '/bin'],",
+      "  creates => '${3:/path/to/created/file}',",
+      "}"
+    ],
+    "description": "Create an exec resource"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if ${1:condition} {",
+      "  ${0:# code}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If-Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "if ${1:condition} {",
+      "  ${2:# true branch}",
+      "} else {",
+      "  ${0:# false branch}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "Case Statement": {
+    "prefix": "case",
+    "body": [
+      "case \\$${1:variable} {",
+      "  '${2:value1}': { ${3:# code} }",
+      "  '${4:value2}': { ${5:# code} }",
+      "  default: { ${0:# default} }",
+      "}"
+    ],
+    "description": "Case statement"
+  },
+  "Include": {
+    "prefix": "include",
+    "body": [
+      "include ${1:module::class}"
+    ],
+    "description": "Include a class"
+  },
+  "Require": {
+    "prefix": "require",
+    "body": [
+      "require ${1:module::class}"
+    ],
+    "description": "Require a class"
+  },
+  "Contain": {
+    "prefix": "contain",
+    "body": [
+      "contain ${1:module::class}"
+    ],
+    "description": "Contain a class"
+  },
+  "Node Definition": {
+    "prefix": "node",
+    "body": [
+      "node '${1:hostname}' {",
+      "  ${0:# resources}",
+      "}"
+    ],
+    "description": "Define a node"
+  },
+  "EPP Template Block": {
+    "prefix": "epp",
+    "body": [
+      "<% | ${1:$param} | %>",
+      "${0:content}"
+    ],
+    "description": "EPP template block"
+  },
+  "Heredoc": {
+    "prefix": "heredoc",
+    "body": [
+      "@(\"${1:END}\")",
+      "${0:content}",
+      "| ${1:END}"
+    ],
+    "description": "Heredoc string"
+  }
+}

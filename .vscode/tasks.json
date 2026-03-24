@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "OpenVox: Validate",
+      "type": "shell",
+      "command": "${config:openvox.editorService.puppet.command}",
+      "args": ["parser", "validate", "${file}"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "OpenVox: Lint",
+      "type": "shell",
+      "command": "${config:openvox.lint.command}",
+      "args": ["--with-filename", "${file}"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "OpenVox: Lint Fix",
+      "type": "shell",
+      "command": "${config:openvox.lint.command}",
+      "args": ["--fix", "${file}"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "OpenVox: Run Unit Tests",
+      "type": "shell",
+      "command": "openvox",
+      "args": ["test", "unit"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "OpenVox: Validate metadata.json",
+      "type": "shell",
+      "command": "metadata-json-lint",
+      "args": ["${workspaceFolder}/metadata.json"],
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "OpenVox: Validate All",
+      "type": "shell",
+      "command": "openvox",
+      "args": ["validate"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

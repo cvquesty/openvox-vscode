@@ -1,0 +1,173 @@
+{
+  "name": "openvox-vscode",
+  "displayName": "OpenVox",
+  "description": "OpenVox IDE support for VS Code — syntax highlighting, linting, validation, and PDK-like tasks for OpenVox modules.",
+  "version": "0.1.0",
+  "publisher": "openvox",
+  "license": "Apache-2.0",
+  "icon": "images/openvox-logo.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters",
+    "Debuggers",
+    "Snippets"
+  ],
+  "keywords": [
+    "openvox",
+    "puppet",
+    "dsl",
+    "infrastructure",
+    "automation"
+  ],
+  "homepage": "https://github.com/cvquesty/openvox-vscode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cvquesty/openvox-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cvquesty/openvox-vscode/issues"
+  },
+  "activationEvents": [
+    "onLanguage:puppet",
+    "onCommand:openvox.validate",
+    "onCommand:openvox.lint",
+    "onCommand:openvox.test"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "puppet",
+        "aliases": ["OpenVox", "Puppet", "puppet"],
+        "extensions": [".pp", ".epp"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "puppet",
+        "scopeName": "source.puppet",
+        "path": "./syntaxes/puppet.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "puppet",
+        "path": "./snippets/puppet.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "openvox.validate",
+        "title": "Validate Manifest",
+        "category": "OpenVox"
+      },
+      {
+        "command": "openvox.lint",
+        "title": "Lint Manifest",
+        "category": "OpenVox"
+      },
+      {
+        "command": "openvox.lintFix",
+        "title": "Auto-Fix Lint Issues",
+        "category": "OpenVox"
+      },
+      {
+        "command": "openvox.test",
+        "title": "Run Unit Tests",
+        "category": "OpenVox"
+      },
+      {
+        "command": "openvox.validateMetadata",
+        "title": "Validate metadata.json",
+        "category": "OpenVox"
+      },
+      {
+        "command": "openvox.lintYaml",
+        "title": "Lint Hiera YAML",
+        "category": "OpenVox"
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "openvox",
+        "required": ["task"],
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "The OpenVox task to run"
+          }
+        }
+      }
+    ],
+    "configuration": {
+      "title": "OpenVox",
+      "properties": {
+        "openvox.editorService.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the OpenVox/Puppet language server for IntelliSense and diagnostics."
+        },
+        "openvox.editorService.puppet.command": {
+          "type": "string",
+          "default": "openvox",
+          "description": "Path to the OpenVox or Puppet binary for the language server."
+        },
+        "openvox.lint.command": {
+          "type": "string",
+          "default": "openvox-lint",
+          "description": "Command for linting manifests (openvox-lint or puppet-lint)."
+        },
+        "openvox.lint.autoFixOnSave": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto-fix lint issues on save."
+        },
+        "openvox.lint.maxLineLength": {
+          "type": "number",
+          "default": 140,
+          "description": "Maximum line length for linting."
+        },
+        "openvox.validate.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Validate manifests on save."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "openvox.lint",
+        "key": "ctrl+alt+l",
+        "mac": "cmd+alt+l",
+        "when": "editorLangId == puppet"
+      },
+      {
+        "command": "openvox.validate",
+        "key": "ctrl+alt+v",
+        "mac": "cmd+alt+v",
+        "when": "editorLangId == puppet"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^8.1.0"
+  }
+}
