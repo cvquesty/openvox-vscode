@@ -100,6 +100,30 @@ npm run compile
 npm run watch  # for development
 ```
 
+## Testing
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Tests include:
+- Extension activation verification
+- Command registration checks (validate, lint, lintFix, test, validateMetadata, lintYaml)
+- Language configuration validation
+
+**Note:** Integration tests require VS Code to be available. The test runner downloads VS Code Electron automatically.
+
+## Development
+
+```bash
+npm install
+npm run compile
+npm run watch  # for development
+npm test       # run tests
+```
+
 ## License
 
 Apache-2.0 — see [LICENSE](LICENSE)
