@@ -26,23 +26,35 @@ OpenVox IDE support for VS Code — syntax highlighting, linting, validation, an
 
 ## Installation
 
-### From Source
+### One-Command Install (Recommended)
 
 ```bash
 git clone https://github.com/cvquesty/openvox-vscode.git
 cd openvox-vscode
-npm install
-npm run compile
+./install.sh
 ```
 
-Then open in VS Code and press F5 to run the extension in development mode.
+This automatically:
+- ✅ Downloads the Puppet syntax grammar
+- ✅ Installs npm dependencies
+- ✅ Compiles the extension
+- ✅ Packages and installs to VS Code
+- ✅ Installs `openvox-lint` and `metadata-json-lint` gems (optional)
 
-### From VSIX
+### Quick Build
 
 ```bash
+./build.sh     # Build extension
+./install.sh   # Full install with gems
+```
+
+### Manual Build
+
+```bash
+npm install
 npm run compile
-npx vsce package
-code --install-extension openvox-vscode-*.vsix
+npm run package
+code --install-extension openvox-vscode.vsix
 ```
 
 ## Configuration
@@ -84,13 +96,9 @@ Access via Terminal → Run Task → OpenVox: ...
 
 ## Syntax Highlighting
 
-This extension uses the Puppet TextMate grammar. For full syntax support, ensure the grammar file is present at `syntaxes/puppet.tmLanguage.json`.
+This extension includes the Puppet TextMate grammar (auto-downloaded during build). Syntax highlighting works out of the box for `.pp` and `.epp` files.
 
-You can copy it from the [puppet-editor-syntax](https://github.com/puppetlabs/puppet-editor-syntax) repository:
-
-```bash
-curl -o syntaxes/puppet.tmLanguage.json https://raw.githubusercontent.com/puppetlabs/puppet-editor-syntax/main/syntaxes/puppet.tmLanguage.json
-```
+The grammar is sourced from [puppet-editor-syntax](https://github.com/puppetlabs/puppet-editor-syntax) and bundled automatically via `build.sh` or `install.sh`.
 
 ## Development
 
@@ -114,15 +122,6 @@ Tests include:
 - Language configuration validation
 
 **Note:** Integration tests require VS Code to be available. The test runner downloads VS Code Electron automatically.
-
-## Development
-
-```bash
-npm install
-npm run compile
-npm run watch  # for development
-npm test       # run tests
-```
 
 ## License
 

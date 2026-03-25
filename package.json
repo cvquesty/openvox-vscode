@@ -50,7 +50,7 @@
       {
         "language": "puppet",
         "scopeName": "source.puppet",
-        "path": "./syntaxes/puppet.tmLanguage.json"
+        "path": "./syntaxes/puppet.tmLanguage"
       }
     ],
     "snippets": [
@@ -158,7 +158,10 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts",
-    "test": "npm run compile && node ./out/test/runTest.js"
+    "test": "npm run compile && node ./out/test/runTest.js",
+    "build": "bash ./build.sh",
+    "install-ext": "bash ./install.sh",
+    "package": "npx vsce package --out openvox-vscode.vsix"
   },
   "devDependencies": {
     "@types/vscode": "^1.75.0",
